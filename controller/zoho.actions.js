@@ -9,11 +9,12 @@ async function getAllContacts(request, response, next) {
             return response.status(404).json({ status: "error", message: "invalid datastore" });
         }
         if (data_store === "CRM") {
+            console.log(process.env.ACCESS_TOKEN);
             const uri = "https://www.zohoapis.com/crm/v2/Contacts";
             const config = {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: "Zoho-oauthtoken 1000.ae5d3eb64441f897f8ec5467b6833547.be8a5439deee71f318704951a3d4f62e"
+                    Authorization: `Zoho-oauthtoken ${process.env.ACCESS_TOKEN}`
                 },
             };
             const res = await fetch(uri, config).then((respon) => respon.json()).then((result) => {
@@ -53,7 +54,7 @@ const getContact = async (request, response, next) => {
             const config = {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: "Zoho-oauthtoken 1000.ae5d3eb64441f897f8ec5467b6833547.be8a5439deee71f318704951a3d4f62e"
+                    Authorization: `Zoho-oauthtoken ${process.env.ACCESS_TOKEN}`
                 },
             };
             const res = await fetch(uri, config).then((respon) => respon.json()).then((result) => {
@@ -100,7 +101,7 @@ const createContact =async (request, response, next) => {
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: "Zoho-oauthtoken 1000.7dc33484a4d0085a2f939ac270b28939.10935c2e956fa76f6c20f4a8a0db982b"
+                    Authorization: `Zoho-oauthtoken ${process.env.ACCESS_TOKEN}`
                 },
                 body:JSON.stringify(packet),
             };
@@ -151,7 +152,7 @@ const updateContact = async (request, response, next) => {
                 method:"PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: "Zoho-oauthtoken 1000.7dc33484a4d0085a2f939ac270b28939.10935c2e956fa76f6c20f4a8a0db982b"
+                    Authorization: `Zoho-oauthtoken ${process.env.ACCESS_TOKEN}`
                 },
                 body:JSON.stringify(packet),
             };
@@ -168,8 +169,8 @@ const updateContact = async (request, response, next) => {
                 return response.status(404).json({status:"success",message:"Please provide a id"});
             }
             const {first_name,last_name,email,Phone} = request.body;
-       
-            const res = await contact.updateById(id,first_name,last_name,email,Phone);
+            const newDB = new contact({firstName:first_name,lastName:last_name,email,phone:Phone});
+            const res = await contact.updateById(id);
             if (!res) {
                 return response.status(404).json({ status: "error", message: "no contacts found try again" });
             }
@@ -197,7 +198,7 @@ const deleteContact = async (request, response, next) => {
                 method:"DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: "Zoho-oauthtoken 1000.7dc33484a4d0085a2f939ac270b28939.10935c2e956fa76f6c20f4a8a0db982b"
+                    Authorization: `Zoho-oauthtoken ${process.env.ACCESS_TOKEN}`
                 },
                 
             };

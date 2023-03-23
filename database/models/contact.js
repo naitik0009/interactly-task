@@ -27,10 +27,10 @@ class Contacts{
         return connect.query(sql);
     };
 
-    static updateById(id,first,last,email,phone){
-        console.log(id,first,last,email,phone);
+    static updateById(id){
+        
         let sql  = `UPDATE contacts SET firstName = ?, lastName = ?, email= ?, phone = ? WHERE id = ?`;
-        return connect.query(sql,[first,last,email,phone,id]);
+        return connect.query(sql,[this.firstName,this.lastName,this.email,this.phone,id]);
     }
 
     static deleteById(id){
