@@ -1,0 +1,23 @@
+{
+	"data_store":"CRM",
+		"data":[
+		{	
+			"id":"5687124000000422001",
+			"Company":"Interactly",
+			"Last_Name":"Tammy",
+			"First_Name":"Tee",
+			"Email":"sammy@gmail.com",
+			"Asst_phone":9748465938,
+			"Mobile":"9748451707",
+			"Phone":"1111889777",
+			"State":"Simla"
+		}
+	],
+	"trigger":	[
+		"approval",
+		"workflow",
+		"blueprint"
+	]
+
+
+}

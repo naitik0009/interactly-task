@@ -1,0 +1,19 @@
+{
+	"data":[
+		{
+			"Company":"Interactly",
+			"Last_Name":"Camel",
+			"First_Name":"Ree",
+			"Email":"ree@gmail.com",
+			"Asst_phone":9748465938,
+			"Mobile":"9748465937",
+			"Phone":"1111111111",
+			"State":"Simla"
+		}
+	],
+	"trigger":	[
+		"approval",
+		"workflow",
+		"blueprint"
+	]
+}
