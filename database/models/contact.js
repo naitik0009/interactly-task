@@ -29,8 +29,8 @@ class Contacts{
 
     static updateById(id,first,last,email,phone){
         console.log(id,first,last,email,phone);
-        let sql  = `UPDATE contacts SET firstName = ${first}, lastName = ${last}, email=${email}, phone = ${phone} WHERE id = ${id}`;
-        return connect.query(sql);
+        let sql  = `UPDATE contacts SET firstName = ?, lastName = ?, email= ?, phone = ? WHERE id = ?`;
+        return connect.query(sql,[first,last,email,phone,id]);
     }
 
     static deleteById(id){
